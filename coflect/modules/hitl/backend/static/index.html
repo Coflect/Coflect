@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coflect HITL</title>
+    <link rel="stylesheet" href="/static/styles.css?v=20260301f" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <div class="brand">
+          <div class="brand-wordmark" aria-label="Coflect" role="img">Coflect</div>
+          <p class="brand-kicker">Agnetic Deep Learning Framework</p>
+        </div>
+        <div class="prestatus-lines">
+          <p class="prestatus-hitl">HITL</p>
+          <p class="prestatus-module">Human In Loop Training</p>
+          <p class="header-tagline">Interactive Trainer Dashboard</p>
+        </div>
+        <div class="status-row">
+          <span id="status-connected">Status: Disconnected</span>
+          <span id="status-training">Training: Running</span>
+          <span id="status-review">Review window: Closed (-)</span>
+        </div>
+      </header>
+
+      <section class="grid two-col">
+        <article class="card">
+          <h2>Metrics</h2>
+          <div class="kv"><span>Step</span><span id="m-step">-</span></div>
+          <div class="kv"><span>Backend</span><span id="m-backend">-</span></div>
+          <div class="kv"><span>Loss</span><span id="m-loss">-</span></div>
+          <div class="kv"><span>Acc</span><span id="m-acc">-</span></div>
+          <div class="kv"><span>Focus λ</span><span id="m-focus">-</span></div>
+          <div class="kv"><span>Steps/sec</span><span id="m-sps">-</span></div>
+          <div class="kv"><span>Forecast step</span><span id="m-fstep">-</span></div>
+          <div class="kv"><span>Forecast epoch</span><span id="m-fepoch">-</span></div>
+          <div class="kv"><span>Forecast candidates</span><span id="m-fcount">-</span></div>
+        </article>
+
+        <article class="card">
+          <h2>LiveCAM Overlay</h2>
+          <div class="kv"><span>Sample idx</span><span id="x-sample">-</span></div>
+          <div class="kv"><span>Target</span><span id="x-target">-</span></div>
+          <div class="kv"><span>Pred</span><span id="x-pred">-</span></div>
+          <div class="kv"><span>Request kind</span><span id="x-kind">-</span></div>
+          <div class="kv"><span>Backend</span><span id="x-backend">-</span></div>
+          <div class="kv"><span>XAI method</span><span id="x-method">-</span></div>
+          <div class="kv"><span>Modality focus</span><span id="x-modality">-</span></div>
+          <div class="kv"><span>Risk score</span><span id="x-risk">-</span></div>
+          <div class="kv"><span>Horizon (epochs)</span><span id="x-horizon">-</span></div>
+          <div class="kv"><span>XAI agreement</span><span id="x-agree">-</span></div>
+          <div class="kv"><span>Focus box</span><span id="x-box">-</span></div>
+          <div id="x-warning" class="warn" hidden>
+            Low agreement across attribution methods; verify with more samples before acting.
+          </div>
+          <div class="kv"><span>XAI ms</span><span id="x-ms">-</span></div>
+          <div class="kv"><span>Model step</span><span id="x-model-step">-</span></div>
+          <div class="kv"><span>Top probs</span><span id="x-top-probs">-</span></div>
+
+          <div class="image-row">
+            <div>
+              <p class="image-title">Overlay</p>
+              <div id="image-box" class="image-box" aria-label="xai overlay" role="img">
+                <img id="x-image" alt="xai overlay" draggable="false" />
+                <div id="roi-box" class="roi-box" hidden></div>
+                <div id="x-placeholder" class="placeholder">Waiting for XAI image…</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="muted">Draw a box over the overlay image to set focus ROI.</p>
+          <p class="muted">ROI: <span id="roi-text">Not set</span></p>
+
+          <p class="label">Top-10 likely failures (forecast):</p>
+          <div id="candidate-strip" class="candidate-strip"></div>
+          <button id="btn-use-latest" class="btn btn-secondary" type="button">Use Latest Stream</button>
+        </article>
+      </section>
+
+      <section class="card">
+        <h2>Human Feedback</h2>
+        <div class="controls">
+          <input id="instruction" type="text" placeholder='e.g. "Ignore border artifacts, focus on central region"' />
+          <input id="strength" type="text" placeholder="λ override (optional, 0-1 or %)" />
+          <button id="btn-send" class="btn" type="button">Send Feedback</button>
+          <button id="btn-pause" class="btn" type="button">Pause Training</button>
+          <button id="btn-clear-roi" class="btn btn-secondary" type="button">Clear ROI</button>
+        </div>
+        <p class="muted">Trainer applies Focus λ and optional ROI-guided auxiliary loss every N steps on a small subset.</p>
+        <p class="muted">Text examples: <code>increase focus by 10%</code>, <code>focus=0.4</code>, <code>focus center</code>, <code>x0=0.2 y0=0.2 x1=0.8 y1=0.8</code>, <code>x=0.2 y=0.2 w=0.6 h=0.6</code>, <code>disable focus</code>.</p>
+      </section>
+      <footer class="app-footer">Licensed under the Apache License 2.0</footer>
+    </main>
+
+    <script src="/static/app.js?v=20260301f"></script>
+  </body>
+</html>

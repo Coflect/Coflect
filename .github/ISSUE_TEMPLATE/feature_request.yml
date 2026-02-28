@@ -1,0 +1,52 @@
+name: Feature request
+description: Propose an enhancement for Coflect.
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please explain the user value and expected impact.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem does this solve?
+      placeholder: Current limitation...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: What should we build?
+      placeholder: Proposed API/behavior...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      placeholder: Other options and tradeoffs.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - modules/hitl
+        - backends/torch
+        - backends/tensorflow
+        - backends/jax
+        - ui
+        - docs/release
+
+  - type: textarea
+    id: perf
+    attributes:
+      label: Performance Impact
+      description: Any expected training throughput impact?
+      placeholder: Should remain within 1-3% overhead...

@@ -1,0 +1,77 @@
+name: Bug report
+description: Report a reproducible problem in Coflect.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. Please include a minimal, reproducible case.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What failed?
+      placeholder: A short, precise summary.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction Steps
+      description: Exact commands/code to reproduce.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      placeholder: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      placeholder: What happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Traceback
+      description: Paste relevant logs or traceback.
+      render: shell
+
+  - type: input
+    id: version
+    attributes:
+      label: Coflect Version
+      placeholder: "e.g. 0.1.0"
+
+  - type: input
+    id: python
+    attributes:
+      label: Python Version
+      placeholder: "e.g. 3.11.8"
+
+  - type: input
+    id: torch
+    attributes:
+      label: Torch Version
+      placeholder: "e.g. 2.6.0"
+
+  - type: input
+    id: os
+    attributes:
+      label: OS / Environment
+      placeholder: "e.g. Ubuntu 22.04, CUDA 12.4"
