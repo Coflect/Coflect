@@ -7,14 +7,17 @@ not crash the trainer hot path.
 from __future__ import annotations
 
 import logging
+from importlib import import_module
 from typing import Any
 
+requests: Any
+
 try:
-    import requests
+    requests = import_module("requests")
 
     _REQUEST_EXCEPTION: type[Exception] = requests.RequestException
 except Exception:  # pragma: no cover - optional dependency guard
-    requests = None  # type: ignore[assignment]
+    requests = None
     _REQUEST_EXCEPTION = Exception
 
 JSONDict = dict[str, Any]

@@ -245,6 +245,7 @@ def main() -> None:
     )
     steps_per_epoch = max(1, len(dl))
     num_classes = int(getattr(ds, "num_classes", 10))
+    ds_image_size = int(getattr(ds, "image_size", 64))
 
     model = resnet18(num_classes=num_classes).to(device)
     model.train()
@@ -346,7 +347,7 @@ def main() -> None:
                     pause_state_reported = True
                 while paused:
                     time.sleep(0.25)
-                    _apply_feedback(get_feedback(args.server), step=step, h=ds.image_size, w=ds.image_size)
+                    _apply_feedback(get_feedback(args.server), step=step, h=ds_image_size, w=ds_image_size)
                 post_event(args.server, "trainer_resumed", {"step": step, "backend": "torch"})
                 pause_state_reported = False
 

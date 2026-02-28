@@ -189,7 +189,10 @@ def saliency_absgrad(model: torch.nn.Module, x: torch.Tensor, target_class: int)
     logits = model(x)
     score = logits[:, target_class].sum()
     score.backward()
-    g = x.grad.detach().abs().mean(dim=1)[0]
+    grad = x.grad
+    if grad is None:
+        return np.zeros((x.shape[2], x.shape[3]), dtype=np.float32)
+    g = grad.detach().abs().mean(dim=1)[0]
     return _normalize_heatmap(g)
 
 

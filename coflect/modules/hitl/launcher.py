@@ -9,6 +9,7 @@ import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
+from typing import BinaryIO
 
 
 @dataclass(frozen=True)
@@ -53,7 +54,7 @@ class RunningProcess:
     spec: ProcessSpec
     proc: subprocess.Popen[bytes]
     log_path: Path
-    log_handle: object
+    log_handle: BinaryIO
 
 
 def _server_host_for_clients(host: str) -> str:

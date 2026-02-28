@@ -1,12 +1,14 @@
 # PyPI Release Process
 
-This process follows common patterns used by large OSS repos (tagged releases, CI quality gates, reproducible builds, and automated publish).
+This process follows common patterns used by large OSS repos (GitHub Releases, CI quality gates, reproducible builds, and automated publish).
+GitHub Releases are the canonical release notes/history for this repository.
 
 ## 1) Prepare release
 
 - Update `pyproject.toml` version.
 - Update `SUPPORT_MATRIX.md` if backend/version windows changed.
 - Ensure CI is green on main.
+- Prepare GitHub release notes draft (features, fixes, perf impact, compatibility notes).
 - Run launch readiness checklist: `docs/LAUNCH_CHECKLIST.md`
 
 ## 2) Create GitHub release
@@ -28,7 +30,7 @@ Recommended cadence (similar to major ML OSS repos):
 ### 3a) Pre-release to TestPyPI
 
 - Workflow: `.github/workflows/publish-testpypi.yml`
-- Trigger: pre-release tag push (`vX.Y.Zrc1`) or manual dispatch.
+- Trigger: GitHub Release `published` where `pre-release=true`, or manual dispatch.
 - Build: `python -m build`
 - Publish target: TestPyPI
 - Validate install:
@@ -40,7 +42,7 @@ pip install --index-url https://test.pypi.org/simple/ coflect==X.Y.Zrc1
 ### 3b) Stable release to PyPI
 
 - Workflow: `.github/workflows/publish-pypi.yml`
-- Trigger: GitHub Release published event.
+- Trigger: GitHub Release `published` where `pre-release=false`.
 - Build: `python -m build`
 - Publish: `pypa/gh-action-pypi-publish` via trusted publisher (OIDC).
 

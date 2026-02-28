@@ -2,12 +2,12 @@ name: Publish TestPyPI
 
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - "v*rc*"
+  release:
+    types: [published]
 
 jobs:
   publish-testpypi:
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'release' && github.event.release.prerelease == true) }}
     runs-on: ubuntu-latest
     permissions:
       id-token: write

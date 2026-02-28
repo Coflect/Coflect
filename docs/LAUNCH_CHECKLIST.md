@@ -13,14 +13,13 @@
 - [ ] `make release-check` passes
 - [ ] `make smoke` passes
 - [ ] CI green on main
-- [ ] Changelog updated for release
+- [ ] GitHub release notes draft prepared
 
 ## Release Operations
 
 - [ ] PyPI trusted publisher configured
-- [ ] TestPyPI publish validated (`vX.Y.Zrc1`)
-- [ ] PyPI release tag created (`vX.Y.Z`)
-- [ ] GitHub release notes published
+- [ ] TestPyPI publish validated from GitHub pre-release
+- [ ] GitHub release published with tag (`vX.Y.Z`)
 
 ## Announcement
 

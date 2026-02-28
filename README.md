@@ -156,15 +156,14 @@ Latest recorded run (**March 1, 2026**):
 ## Packaging and Release
 - Package metadata and tool configs: `pyproject.toml`
 - Backend/framework support policy: `SUPPORT_MATRIX.md`
-- Release notes history: `CHANGELOG.md`
+- Release notes and version history: GitHub Releases (`https://github.com/Coflect/Coflect/releases`)
 - Contribution guide: `CONTRIBUTING.md`
 - Code of conduct: `CODE_OF_CONDUCT.md`
 - Security policy: `SECURITY.md`
 - CI workflow: `.github/workflows/ci.yml`
-- TestPyPI workflow (pre-release tags): `.github/workflows/publish-testpypi.yml`
+- TestPyPI workflow (GitHub pre-release/manual): `.github/workflows/publish-testpypi.yml`
 - PyPI publish workflow (GitHub Release-triggered): `.github/workflows/publish-pypi.yml`
 - Launch checklist: `docs/LAUNCH_CHECKLIST.md`
-- Announcement templates: `docs/ANNOUNCEMENT_TEMPLATE.md`
 - Release playbook: `docs/RELEASE_PYPI.md`
 - Architecture and extension guide: `docs/ARCHITECTURE.md`
 
