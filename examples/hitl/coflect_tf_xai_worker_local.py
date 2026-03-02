@@ -9,13 +9,14 @@ import os
 import re
 import time
 from collections import deque
+from collections.abc import Sized
 
 import numpy as np
 import torch
 
 from coflect.modules.hitl.common.synth_numpy import sample_chw_by_idx
-from coflect.modules.hitl.common.torch_dataset import DatasetConfig, build_torch_dataset
 from coflect.modules.hitl.common.tf_model import build_tf_cnn
+from coflect.modules.hitl.common.torch_dataset import DatasetConfig, build_torch_dataset
 from coflect.modules.hitl.common.wire import dequeue_xai, post_event
 from coflect.modules.hitl.xai_worker.livecam_tf import (
     make_overlay_png_tf_with_meta,
@@ -201,7 +202,8 @@ def main() -> None:
             continue
 
         if torch_ds is not None:
-            local_idx = sample_idx % max(1, len(torch_ds))
+            ds_len = len(torch_ds) if isinstance(torch_ds, Sized) else 1
+            local_idx = sample_idx % max(1, ds_len)
             x_item, _, _ = torch_ds[local_idx]
             if isinstance(x_item, torch.Tensor):
                 x_chw = x_item.detach().cpu().float().numpy()
