@@ -71,7 +71,7 @@ def main() -> None:
     parser.add_argument("--launch", action="store_true", help="Launch backend/trainer/forecast/xai workers")
     parser.add_argument("--duration", type=int, default=30, help="Seconds to keep launched processes alive")
     parser.add_argument("--backend", choices=["torch", "tensorflow"], default="torch")
-    parser.add_argument("--dataset", choices=["synthetic", "cifar10_catsdogs"], default="synthetic")
+    parser.add_argument("--dataset", choices=["synthetic", "cifar10_catsdogs"], default="cifar10_catsdogs")
     parser.add_argument("--data-root", default="./data")
     parser.add_argument("--download-data", action="store_true")
     args = parser.parse_args()

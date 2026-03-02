@@ -11,7 +11,9 @@ This folder follows a structure commonly used in large ML repositories (PyTorch 
 
 - `hitl/`
   - `README.md` module-specific quickstart
-  - `01_hitl_module_quickstart.ipynb` notebook walkthrough
+  - `01_hitl_module_quickstart.ipynb` Torch workflow notebook
+  - `02_hitl_tensorflow_keras_workflow.ipynb` TensorFlow/Keras workflow notebook
+  - `coflect_tf_xai_worker_local.py` TensorFlow local worker helper for notebook bridge
   - `run_hitl_demo.py` script counterpart
 
 ## Authoring Rules

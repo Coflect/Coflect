@@ -275,7 +275,7 @@ def main() -> None:
     try:
         import uvicorn
     except ImportError as exc:
-        raise RuntimeError("uvicorn is required; install with `pip install coflect[server]`") from exc
+        raise RuntimeError("uvicorn is required; install with `pip install coflect`") from exc
 
     parser = argparse.ArgumentParser(description="Run Coflect HITL backend server")
     parser.add_argument("--host", default="0.0.0.0")

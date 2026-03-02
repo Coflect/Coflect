@@ -14,6 +14,19 @@ def run_hitl_backend() -> None:
     main()
 
 
+def run_hitl_ui() -> None:
+    """Start HITL UI/backend server.
+
+    This is an alias of `coflect-hitl-backend` for notebook workflows.
+
+    Example:
+        >>> # CLI: coflect-hitl-ui --host 127.0.0.1 --port 8000
+    """
+    from coflect.modules.hitl.backend.app import main
+
+    main()
+
+
 def run_hitl_trainer_torch() -> None:
     """Run HITL trainer with Torch backend.
 

@@ -7,7 +7,7 @@ Thanks for contributing.
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -e .[dev,server]
+pip install -e .[dev]
 ```
 
 ## Quality Bar

@@ -11,7 +11,7 @@ run() {
 
 run python -m pip --version
 run python -m pip install --upgrade pip
-run python -m pip install -e .[dev,server]
+run python -m pip install -e .[dev]
 run ruff check .
 run mypy coflect
 run pytest

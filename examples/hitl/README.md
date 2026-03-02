@@ -2,58 +2,77 @@
 
 ## Files
 
-- `01_hitl_module_quickstart.ipynb`: notebook walkthrough.
-- `run_hitl_demo.py`: script that prints/optionally launches local processes.
+- `01_hitl_module_quickstart.ipynb`: Torch day-to-day experiment workflow notebook.
+- `02_hitl_tensorflow_keras_workflow.ipynb`: TensorFlow/Keras day-to-day experiment workflow notebook.
+- `coflect_tf_xai_worker_local.py`: TensorFlow local XAI worker helper used by notebook bridge.
+- `run_hitl_demo.py`: script helper that prints (or launches) backend/trainer/forecast/XAI commands.
 
-## Quick Start
-
-1. Install package and server deps:
+## Setup
 
 ```bash
-pip install -e .[server,dev]
+pip install coflect
+# optional framework extras:
+# pip install "coflect[tensorflow]"
 ```
 
-For TensorFlow/Keras runtime commands, also install:
+Editable install for local development:
+
+```bash
+pip install -e .
+# optional contributor tooling:
+# pip install -e .[dev]
+```
+
+For TensorFlow/Keras runtime commands:
 
 ```bash
 pip install -e .[tensorflow]
 ```
 
-2. Start processes (or use the script in this folder):
+## Torch Path
+
+Notebook:
+- Open `01_hitl_module_quickstart.ipynb` and run cells top-to-bottom.
+- Notebook bridge auto-starts backend + XAI worker for live UI updates.
+- Continue in the UI at `http://127.0.0.1:8000`.
+
+Script:
 
 ```bash
-coflect-hitl-run --backend torch --dataset cifar10_catsdogs --data_root ./data --steps 1000 --xai_every 100 --forecast_every 20
-# module fallback:
-# python -m coflect.modules.hitl.launcher --backend torch --dataset cifar10_catsdogs --data_root ./data --steps 1000 --xai_every 100 --forecast_every 20
+python examples/hitl/run_hitl_demo.py \
+  --backend torch \
+  --dataset cifar10_catsdogs \
+  --data-root ./data \
+  --download-data
 ```
 
-Equivalent manual split:
+One-command launcher equivalent:
 
 ```bash
-coflect-hitl-backend --host 0.0.0.0 --port 8000
-coflect-hitl-trainer-torch --server http://localhost:8000 --steps 1000 --xai_every 100 --forecast_every 20
-coflect-hitl-forecast-worker --server http://localhost:8000 --backend torch
-coflect-hitl-xai-worker-torch --server http://localhost:8000 --xai_method consensus
+coflect-hitl-run --backend torch --dataset cifar10_catsdogs --data_root ./data --download_data --steps 1000 --xai_every 100 --forecast_every 20
 ```
 
-Torch real-data variant (CIFAR-10 cat vs dog):
+## TensorFlow/Keras Path
+
+Notebook:
+- Open `02_hitl_tensorflow_keras_workflow.ipynb` and run cells top-to-bottom.
+- Notebook bridge can use `coflect_tf_xai_worker_local.py` when present for dataset-aligned live overlays.
+- Continue in the UI at `http://127.0.0.1:8000`.
+
+Script:
 
 ```bash
-coflect-hitl-trainer-torch --server http://localhost:8000 --dataset cifar10_catsdogs --data_root ./data --download_data --steps 1000 --xai_every 100 --forecast_every 20
-coflect-hitl-forecast-worker --server http://localhost:8000 --backend torch
-coflect-hitl-xai-worker-torch --server http://localhost:8000 --xai_method consensus --dataset cifar10_catsdogs --data_root ./data --download_data
+python examples/hitl/run_hitl_demo.py --backend tensorflow
 ```
 
-TensorFlow/Keras variant:
+One-command launcher equivalent:
 
 ```bash
-coflect-hitl-trainer-tf --server http://localhost:8000 --steps 1000 --xai_every 100 --forecast_every 20
-coflect-hitl-forecast-worker --server http://localhost:8000 --backend tensorflow
-coflect-hitl-xai-worker-tf --server http://localhost:8000 --xai_method consensus
+coflect-hitl-run --backend tensorflow --steps 1000 --xai_every 100 --forecast_every 20
 ```
 
-3. Open UI:
+## Open UI
 
-Open `http://localhost:8000`.
+Open `http://127.0.0.1:8000`.
 
-In UI, wait for the review window to open, select one of the top forecasted failure samples, draw ROI, send feedback, then resume.
+Use the review window to pick a forecasted sample, draw ROI, submit feedback, then resume training.
