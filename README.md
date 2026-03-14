@@ -46,34 +46,46 @@ Coflect splits responsibilities across processes:
 ### HILT Flow Diagram
 
 ```mermaid
-flowchart LR
-    subgraph TH["Trainer Hot Path"]
-        B["Training batch"]
-        T["Forward + backward + optimizer step"]
-        E["Emit compact metrics / requests"]
-        N["Continue to next step"]
-        B --> T --> E --> N
+flowchart TB
+    subgraph TRAINER["Trainer Hot Path"]
+        A["Load batch"]
+        B["Train step"]
+        C["Emit telemetry"]
+        D["Next batch"]
+        A --> B --> C --> D
     end
 
-    E -->|"small JSON events"| API["Backend API"]
-    E -->|"snapshot + async XAI request"| XQ["XAI queue"]
-    E -->|"compact telemetry"| FQ["Forecast queue"]
+    C --> API["Backend"]
+    API --> UI["Live UI"]
+    UI -->|"pause / resume / ROI / text feedback"| API
 
+    API --> XQ["XAI queue"]
     XQ --> XW["XAI worker"]
-    FQ --> FW["Forecast worker"]
-
     XW -->|"overlay + explanation payload"| API
+
+    API --> FQ["Forecast queue"]
+    FQ --> FW["Forecast worker"]
     FW -->|"top-k likely failures"| API
 
-    API -->|"WebSocket stream"| UI["Live UI"]
-    UI -->|"pause / resume / ROI / text feedback"| API
-    API -->|"latest feedback polled by trainer"| T
+    API --> FB["Feedback state"]
+    FB -. "polled by trainer" .-> B
 
-    H["Heavy XAI and forecasting stay off the trainer hot path"] -.-> XW
-    H -.-> FW
+    classDef trainer fill:#f6d365,stroke:#8a5a00,stroke-width:2px,color:#2b1c00;
+    classDef backend fill:#84fab0,stroke:#0f6b3f,stroke-width:2px,color:#08361f;
+    classDef ui fill:#ffd3a5,stroke:#a85b00,stroke-width:2px,color:#4d2800;
+    classDef xai fill:#a18cd1,stroke:#5b3c96,stroke-width:2px,color:#22123f;
+    classDef forecast fill:#8fd3f4,stroke:#0d5f87,stroke-width:2px,color:#083041;
+    classDef feedback fill:#ff9a9e,stroke:#a63d46,stroke-width:2px,color:#4a1016;
+
+    class A,B,C,D trainer;
+    class API backend;
+    class UI ui;
+    class XQ,XW xai;
+    class FQ,FW forecast;
+    class FB feedback;
 ```
 
-The trainer never waits for heavy XAI rendering or forecast ranking. It only emits lightweight telemetry, while explanation and review work happen asynchronously in separate worker processes.
+Training stays fast because XAI rendering and forecast ranking run asynchronously outside the trainer hot path.
 
 ### Live Feedback During Training
 
