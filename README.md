@@ -5,6 +5,7 @@
 --------------------------------------------------------------------------------
 
 Coflect is an agentic deep learning framework built for fast, efficient, explainable, and steerable training workflows.
+The first module is Human In Loop Training (HILT).
 
 Core principles:
 - Trainer hot path stays lightweight (small JSON events only).
