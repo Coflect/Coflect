@@ -1,4 +1,4 @@
-"""Coflect: human-in-the-loop training framework."""
+"""Coflect: Human In Loop Training framework."""
 
 from coflect.version import __version__
 

@@ -50,10 +50,10 @@ pip install --index-url https://test.pypi.org/simple/ coflect==X.Y.Zrc1
 
 - Verify package on PyPI (`pip install coflect==X.Y.Z`).
 - Smoke test entrypoints:
-  - `coflect-hitl-backend`
-  - `coflect-hitl-trainer-torch`
-  - `coflect-hitl-forecast-worker`
-  - `coflect-hitl-xai-worker-torch`
+  - `coflect-hilt-backend`
+  - `coflect-hilt-trainer-torch`
+  - `coflect-hilt-forecast-worker`
+  - `coflect-hilt-xai-worker-torch`
 - Open next development milestone and set next version.
 
 ## Versioning

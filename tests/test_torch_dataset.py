@@ -1,6 +1,6 @@
 from pytest import raises
 
-from coflect.modules.hitl.common.torch_dataset import DatasetConfig, build_torch_dataset
+from coflect.modules.hilt.common.torch_dataset import DatasetConfig, build_torch_dataset
 
 
 def test_build_synthetic_dataset_has_expected_shape_attrs() -> None:

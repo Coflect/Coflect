@@ -1,4 +1,4 @@
-.PHONY: install-dev quality test build release-check smoke benchmark-hitl
+.PHONY: install-dev quality test build release-check smoke benchmark-hilt
 
 install-dev:
 	python -m pip install --upgrade pip
@@ -18,7 +18,7 @@ release-check:
 	./scripts/release_check.sh
 
 smoke:
-	./scripts/smoke_hitl.sh 20
+	./scripts/smoke_hilt.sh 20
 
-benchmark-hitl:
-	PYTHONPATH=. python scripts/benchmark_hitl_overhead.py --steps 200 --repeats 3 --warmup_runs 1 --dataset synthetic --device cpu --num_workers 0 --batch_size 64 --output docs/benchmarks/hitl_overhead_longrun_latest.json
+benchmark-hilt:
+	PYTHONPATH=. python scripts/benchmark_hilt_overhead.py --steps 200 --repeats 3 --warmup_runs 1 --dataset synthetic --device cpu --num_workers 0 --batch_size 64 --output docs/benchmarks/hilt_overhead_longrun_latest.json

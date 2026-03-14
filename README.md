@@ -1,10 +1,10 @@
-<p align="center"><strong>Coflect</strong></p>
+<h1 align="center">Coflect</h1>
 <p align="center">Agentic Deep Learning Framework</p>
-<p align="center"><strong>HITL</strong> · Human In Loop Training</p>
+<p align="center"><strong>HILT</strong> · Human In Loop Training</p>
 
 --------------------------------------------------------------------------------
 
-Coflect is a human-in-the-loop (HITL) training framework built for fast training loops.
+Coflect is a Human In Loop Training (HILT) framework built for fast training loops.
 
 Core principles:
 - Trainer hot path stays lightweight (small JSON events only).
@@ -14,7 +14,7 @@ Core principles:
 <!-- toc -->
 
 - [More About Coflect](#more-about-coflect)
-  - [Non-blocking HITL Architecture](#non-blocking-hitl-architecture)
+  - [Non-blocking HILT Architecture](#non-blocking-hilt-architecture)
   - [Live Feedback During Training](#live-feedback-during-training)
   - [Torch-First, Multi-Backend Roadmap](#torch-first-multi-backend-roadmap)
   - [Fast and Lean by Design](#fast-and-lean-by-design)
@@ -32,7 +32,7 @@ Core principles:
 
 ## More About Coflect
 
-### Non-blocking HITL Architecture
+### Non-blocking HILT Architecture
 
 Coflect splits responsibilities across processes:
 - backend: event ingest, WebSocket broadcast, feedback storage, XAI queue
@@ -67,7 +67,7 @@ Current release line:
 ### PyPI
 
 ```bash
-pip install --upgrade coflect
+pip install coflect
 ```
 
 Optional framework extras:
@@ -100,8 +100,8 @@ pip install -e .
 
 Use these notebooks for daily deep learning experiments:
 
-- Torch: `examples/hitl/01_hitl_module_quickstart.ipynb`
-- TensorFlow/Keras: `examples/hitl/02_hitl_tensorflow_keras_workflow.ipynb`
+- Torch: `examples/hilt/01_hilt_module_quickstart.ipynb`
+- TensorFlow/Keras: `examples/hilt/02_hilt_tensorflow_keras_workflow.ipynb`
 
 Both notebooks include bridge-based UI integration, feedback handling, and Live/XAI wiring.
 
@@ -112,7 +112,7 @@ For a fast end-to-end demo:
 Torch quickstart (CIFAR-10 cat-vs-dog only):
 
 ```bash
-coflect-hitl-run \
+coflect-hilt-run \
   --backend torch \
   --dataset cifar10_catsdogs \
   --data_root ./data \
@@ -129,7 +129,7 @@ Dataset note:
 TensorFlow/Keras MVP path:
 
 ```bash
-coflect-hitl-run \
+coflect-hilt-run \
   --backend tensorflow \
   --steps 5000 \
   --xai_every 100 \
@@ -143,7 +143,7 @@ Open UI at `http://localhost:8000`.
 - Architecture: `docs/ARCHITECTURE.md`
 - Support policy: `SUPPORT_MATRIX.md`
 - Example index: `examples/README.md`
-- HITL examples: `examples/hitl/README.md`
+- HILT examples: `examples/hilt/README.md`
 - Release playbook: `docs/RELEASE_PYPI.md`
 - Launch checklist: `docs/LAUNCH_CHECKLIST.md`
 

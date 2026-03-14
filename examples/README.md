@@ -9,12 +9,12 @@ This folder follows a structure commonly used in large ML repositories (PyTorch 
 
 ## Layout
 
-- `hitl/`
+- `hilt/`
   - `README.md` module-specific quickstart
-  - `01_hitl_module_quickstart.ipynb` Torch workflow notebook
-  - `02_hitl_tensorflow_keras_workflow.ipynb` TensorFlow/Keras workflow notebook
+  - `01_hilt_module_quickstart.ipynb` Torch workflow notebook
+  - `02_hilt_tensorflow_keras_workflow.ipynb` TensorFlow/Keras workflow notebook
   - `coflect_tf_xai_worker_local.py` TensorFlow local worker helper for notebook bridge
-  - `run_hitl_demo.py` script counterpart
+  - `run_hilt_demo.py` script counterpart
 
 ## Authoring Rules
 

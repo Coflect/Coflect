@@ -10,7 +10,7 @@ This matrix defines what Coflect commits to test and support per release line.
 ## Backend Support Policy
 
 - Torch is the primary backend for `0.x` releases.
-- TensorFlow/Keras is available for HITL MVP trainer + XAI worker paths in `0.1.x` as experimental support.
+- TensorFlow/Keras is available for HILT MVP trainer + XAI worker paths in `0.1.x` as experimental support.
 - JAX remains staged behind adapter interfaces until integration tests are in place.
 - We follow an `N-2` style policy where practical: support the latest stable backend version plus previous compatible versions.
 

@@ -1,4 +1,4 @@
-from coflect.modules.hitl.common.messages import XaiRequestPayload
+from coflect.modules.hilt.common.messages import XaiRequestPayload
 
 
 def test_xai_request_payload_defaults() -> None:

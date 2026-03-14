@@ -1,6 +1,6 @@
 """Coflect pluggable module namespace."""
 
-import coflect.modules.hitl as _hitl  # noqa: F401
+import coflect.modules.hilt as _hilt  # noqa: F401
 from coflect.modules.base import ModuleSpec
 from coflect.modules.registry import get_module, list_modules, register_module
 

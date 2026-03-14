@@ -1,6 +1,6 @@
 from collections import deque
 
-from coflect.modules.hitl.forecast.worker import SampleState, _overlap, _risk_score
+from coflect.modules.hilt.forecast.worker import SampleState, _overlap, _risk_score
 
 
 def _state_from_rows(rows: list[tuple[float, float, float, bool, int]]) -> SampleState:

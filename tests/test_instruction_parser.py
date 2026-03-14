@@ -1,4 +1,4 @@
-from coflect.modules.hitl.common.instruction_parser import parse_instruction
+from coflect.modules.hilt.common.instruction_parser import parse_instruction
 
 
 def test_parse_strength_delta_percent() -> None:

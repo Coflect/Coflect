@@ -7,7 +7,7 @@ import torch.nn as nn
 import torch.optim as optim
 
 from coflect.backends.base import BackendAdapter
-from coflect.modules.hitl.xai_worker.livecam import make_overlay_png
+from coflect.modules.hilt.xai_worker.livecam import make_overlay_png
 
 
 class TorchAdapter(BackendAdapter):

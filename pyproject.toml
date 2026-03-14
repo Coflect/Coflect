@@ -5,14 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "coflect"
 version = "0.1.1"
-description = "Coflect: human-in-the-loop training framework (Torch-first, multi-backend roadmap)."
+description = "Coflect: Human In Loop Training framework (Torch-first, multi-backend roadmap)."
 readme = { file = "README_PYPI.md", content-type = "text/markdown" }
 requires-python = ">=3.10"
 license = "Apache-2.0"
 authors = [
   { name = "Coflect Contributors" }
 ]
-keywords = ["machine-learning", "human-in-the-loop", "xai", "pytorch", "training"]
+keywords = ["machine-learning", "human-in-loop", "hilt", "xai", "pytorch", "training"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -57,21 +57,21 @@ Repository = "https://github.com/coflect/coflect"
 Issues = "https://github.com/coflect/coflect/issues"
 
 [project.scripts]
-coflect-hitl-backend = "coflect.cli:run_hitl_backend"
-coflect-hitl-ui = "coflect.cli:run_hitl_ui"
-coflect-hitl-trainer-torch = "coflect.cli:run_hitl_trainer_torch"
-coflect-hitl-xai-worker-torch = "coflect.cli:run_hitl_xai_worker_torch"
-coflect-hitl-trainer-tf = "coflect.cli:run_hitl_trainer_tf"
-coflect-hitl-xai-worker-tf = "coflect.cli:run_hitl_xai_worker_tf"
-coflect-hitl-forecast-worker = "coflect.cli:run_hitl_forecast_worker"
-coflect-hitl-run = "coflect.cli:run_hitl_stack"
+coflect-hilt-backend = "coflect.cli:run_hilt_backend"
+coflect-hilt-ui = "coflect.cli:run_hilt_ui"
+coflect-hilt-trainer-torch = "coflect.cli:run_hilt_trainer_torch"
+coflect-hilt-xai-worker-torch = "coflect.cli:run_hilt_xai_worker_torch"
+coflect-hilt-trainer-tf = "coflect.cli:run_hilt_trainer_tf"
+coflect-hilt-xai-worker-tf = "coflect.cli:run_hilt_xai_worker_tf"
+coflect-hilt-forecast-worker = "coflect.cli:run_hilt_forecast_worker"
+coflect-hilt-run = "coflect.cli:run_hilt_stack"
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["coflect*"]
 
 [tool.setuptools.package-data]
-"coflect.modules.hitl.backend" = ["static/*"]
+"coflect.modules.hilt.backend" = ["static/*"]
 
 [tool.ruff]
 line-length = 100

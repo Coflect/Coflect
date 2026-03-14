@@ -7,26 +7,26 @@
   - registry for backend factories
 - `coflect/modules/`
   - module abstraction and registry
-  - `hitl/` module implementation
+  - `hilt/` module implementation
 
-## HITL Runtime Topology
+## HILT Runtime Topology
 
 - `backend` process: event ingest + websocket broadcast + feedback storage + backend-specific XAI/forecast queues.
 - `trainer` process: emits scalar metrics and compact telemetry, enqueues lightweight XAI requests.
-- `forecast_worker` process: CPU-only ranking of likely future failures and HITL window gating.
+- `forecast_worker` process: CPU-only ranking of likely future failures and HILT window gating.
 - `xai_worker` process: loads snapshots asynchronously, computes LiveCAM attribution, publishes compressed image payloads.
 - `ui` page: static HTML/JS served by backend at `/`, displays metrics/overlays, and sends human instructions.
 
-HITL control loop details:
+HILT control loop details:
 - Feedback can include `paused=true/false` for explicit pause/resume.
 - Forecast worker emits `forecast_topk` events with top-10 likely failure candidates.
 - UI selects candidates from forecast queue (not random mistakes), draws ROI, and resumes training after intervention.
 - XAI events include a `modality_focus` map to support future multimodal attribution views.
 
 Current trainer/worker entrypoints:
-- Torch: `coflect-hitl-trainer-torch`, `coflect-hitl-xai-worker-torch`
-- TensorFlow/Keras: `coflect-hitl-trainer-tf`, `coflect-hitl-xai-worker-tf`
-- Forecast (CPU): `coflect-hitl-forecast-worker --backend <torch|tensorflow>`
+- Torch: `coflect-hilt-trainer-torch`, `coflect-hilt-xai-worker-torch`
+- TensorFlow/Keras: `coflect-hilt-trainer-tf`, `coflect-hilt-xai-worker-tf`
+- Forecast (CPU): `coflect-hilt-forecast-worker --backend <torch|tensorflow>`
 
 ## Extending with New Framework Support
 

@@ -59,7 +59,7 @@ class TensorFlowAdapter(BackendAdapter):
         Example:
             >>> png = adapter.attribution(x_chw, target_class=2, method="consensus")
         """
-        from coflect.modules.hitl.xai_worker.livecam_tf import make_overlay_png_tf_with_meta
+        from coflect.modules.hilt.xai_worker.livecam_tf import make_overlay_png_tf_with_meta
 
         png, _ = make_overlay_png_tf_with_meta(
             self.model,

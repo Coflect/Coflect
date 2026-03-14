@@ -1,6 +1,6 @@
 # Coflect
 
-Coflect is a human-in-the-loop deep learning framework for live training control with non-blocking explainability.
+Coflect is a Human In Loop Training (HILT) deep learning framework for live training control with non-blocking explainability.
 
 Torch is the primary production path. TensorFlow/Keras and JAX are available as optional extras.
 
@@ -22,7 +22,7 @@ Python requirement: `>=3.10`.
 ## Quickstart
 
 ```bash
-coflect-hitl-run \
+coflect-hilt-run \
   --backend torch \
   --dataset cifar10_catsdogs \
   --data_root ./data \
@@ -37,7 +37,7 @@ Open [http://localhost:8000](http://localhost:8000).
 UI-only server command:
 
 ```bash
-coflect-hitl-ui --host 127.0.0.1 --port 8000
+coflect-hilt-ui --host 127.0.0.1 --port 8000
 ```
 
 ## Project links

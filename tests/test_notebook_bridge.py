@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import coflect.modules.hitl.common.notebook_bridge as nb
-from coflect.modules.hitl.common.notebook_bridge import NotebookBridgeConfig, NotebookHITLBridge
+import coflect.modules.hilt.common.notebook_bridge as nb
+from coflect.modules.hilt.common.notebook_bridge import NotebookBridgeConfig, NotebookHILTBridge
 
 
 def test_roi_norm_to_pixels() -> None:
@@ -19,7 +19,7 @@ def test_maybe_post_metrics_cadence(monkeypatch) -> None:
 
     monkeypatch.setattr(nb, "post_event", _fake_post_event)
 
-    bridge = NotebookHITLBridge(
+    bridge = NotebookHILTBridge(
         NotebookBridgeConfig(
             backend="torch",
             metrics_every=2,
@@ -67,7 +67,7 @@ def test_maybe_sync_feedback_applies_focus_pause_and_roi(monkeypatch) -> None:
     monkeypatch.setattr(nb, "get_feedback", _fake_get_feedback)
     monkeypatch.setattr(nb, "post_event", _fake_post_event)
 
-    bridge = NotebookHITLBridge(
+    bridge = NotebookHILTBridge(
         NotebookBridgeConfig(
             backend="torch",
             metrics_every=100,
@@ -108,7 +108,7 @@ def test_maybe_enqueue_xai_cadence(monkeypatch) -> None:
     monkeypatch.setattr(nb, "enqueue_xai", _fake_enqueue_xai)
     monkeypatch.setattr(nb, "post_event", _fake_post_event)
 
-    bridge = NotebookHITLBridge(
+    bridge = NotebookHILTBridge(
         NotebookBridgeConfig(
             backend="torch",
             metrics_every=100,
@@ -150,7 +150,7 @@ def test_maybe_enqueue_xai_cadence(monkeypatch) -> None:
 
 def test_xai_worker_script_fallback(tmp_path: Path) -> None:
     missing_script = str(tmp_path / "missing_worker.py")
-    bridge_missing = NotebookHITLBridge(
+    bridge_missing = NotebookHILTBridge(
         NotebookBridgeConfig(
             backend="tensorflow",
             xai_worker_script=missing_script,
@@ -158,11 +158,11 @@ def test_xai_worker_script_fallback(tmp_path: Path) -> None:
     )
     cmd_missing = bridge_missing._build_xai_cmd()
     assert "-m" in cmd_missing
-    assert "coflect.modules.hitl.xai_worker.worker_tf_livecam" in cmd_missing
+    assert "coflect.modules.hilt.xai_worker.worker_tf_livecam" in cmd_missing
 
     existing_script = tmp_path / "worker.py"
     existing_script.write_text("print('ok')", encoding="utf-8")
-    bridge_existing = NotebookHITLBridge(
+    bridge_existing = NotebookHILTBridge(
         NotebookBridgeConfig(
             backend="tensorflow",
             xai_worker_script=str(existing_script),
@@ -174,13 +174,13 @@ def test_xai_worker_script_fallback(tmp_path: Path) -> None:
 
 
 def test_xai_worker_script_resolution_from_examples_path(tmp_path: Path, monkeypatch) -> None:
-    examples_dir = tmp_path / "examples" / "hitl"
+    examples_dir = tmp_path / "examples" / "hilt"
     examples_dir.mkdir(parents=True)
     script_path = examples_dir / "coflect_tf_xai_worker_local.py"
     script_path.write_text("print('ok')", encoding="utf-8")
     monkeypatch.chdir(tmp_path)
 
-    bridge = NotebookHITLBridge(
+    bridge = NotebookHILTBridge(
         NotebookBridgeConfig(
             backend="tensorflow",
             xai_worker_script="coflect_tf_xai_worker_local.py",

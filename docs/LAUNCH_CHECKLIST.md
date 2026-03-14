@@ -2,7 +2,7 @@
 
 ## Product Readiness
 
-- [ ] End-to-end HITL flow validated (backend, trainer, forecast worker, XAI worker, UI)
+- [ ] End-to-end HILT flow validated (backend, trainer, forecast worker, XAI worker, UI)
 - [ ] ROI feedback path verified
 - [ ] Snapshot sync path verified
 - [ ] XAI budget mechanism validated

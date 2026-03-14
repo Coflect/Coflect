@@ -23,7 +23,7 @@ def get_module(name: str) -> ModuleSpec:
     """Return module specification by name.
 
     Example:
-        >>> hitl = get_module("hitl")
+        >>> hilt = get_module("hilt")
     """
     key = name.strip().lower()
     if key not in _MODULES:
