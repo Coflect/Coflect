@@ -16,6 +16,7 @@ Core principles:
 
 - [More About Coflect](#more-about-coflect)
   - [Non-blocking HILT Architecture](#non-blocking-hilt-architecture)
+  - [HILT Flow Diagram](#hilt-flow-diagram)
   - [Live Feedback During Training](#live-feedback-during-training)
   - [Torch-First, Multi-Backend Roadmap](#torch-first-multi-backend-roadmap)
   - [Fast and Lean by Design](#fast-and-lean-by-design)
@@ -41,6 +42,38 @@ Coflect splits responsibilities across processes:
 - xai worker: attribution rendering outside trainer hot path
 - forecast worker: CPU-only top-k likely failure ranking
 - UI: live metrics, overlays, pause/resume, ROI and text feedback
+
+### HILT Flow Diagram
+
+```mermaid
+flowchart LR
+    subgraph TH["Trainer Hot Path"]
+        B["Training batch"]
+        T["Forward + backward + optimizer step"]
+        E["Emit compact metrics / requests"]
+        N["Continue to next step"]
+        B --> T --> E --> N
+    end
+
+    E -->|"small JSON events"| API["Backend API"]
+    E -->|"snapshot + async XAI request"| XQ["XAI queue"]
+    E -->|"compact telemetry"| FQ["Forecast queue"]
+
+    XQ --> XW["XAI worker"]
+    FQ --> FW["Forecast worker"]
+
+    XW -->|"overlay + explanation payload"| API
+    FW -->|"top-k likely failures"| API
+
+    API -->|"WebSocket stream"| UI["Live UI"]
+    UI -->|"pause / resume / ROI / text feedback"| API
+    API -->|"latest feedback polled by trainer"| T
+
+    H["Heavy XAI and forecasting stay off the trainer hot path"] -.-> XW
+    H -.-> FW
+```
+
+The trainer never waits for heavy XAI rendering or forecast ranking. It only emits lightweight telemetry, while explanation and review work happen asynchronously in separate worker processes.
 
 ### Live Feedback During Training
 
