@@ -4,7 +4,6 @@
 
 - `01_hilt_module_quickstart.ipynb`: Torch day-to-day experiment workflow notebook.
 - `02_hilt_tensorflow_keras_workflow.ipynb`: TensorFlow/Keras day-to-day experiment workflow notebook.
-- `coflect_tf_xai_worker_local.py`: TensorFlow local XAI worker helper used by notebook bridge.
 - `run_hilt_demo.py`: script helper that prints (or launches) backend/trainer/forecast/XAI commands.
 
 ## Setup
@@ -56,7 +55,6 @@ coflect-hilt-run --backend torch --dataset cifar10_catsdogs --data_root ./data -
 
 Notebook:
 - Open `02_hilt_tensorflow_keras_workflow.ipynb` and run cells top-to-bottom.
-- Notebook bridge can use `coflect_tf_xai_worker_local.py` when present for dataset-aligned live overlays.
 - Continue in the UI at `http://127.0.0.1:8000`.
 
 Script:
